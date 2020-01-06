@@ -1,0 +1,43 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+  pre_build:
+    commands:
+      # - apt-get update -y
+      # - apt-get install -y maven
+      - java -version
+      - pip install awscli --upgrade --user
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region ${region} --no-include-email)
+      - REPOSITORY_URI=${repository_url}
+      - CONTAINER_NAME=${container_name}
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)
+      - IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG
+      - mvn install
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo $IMAGE_URI
+      - mvn clean package -Ddockerfile.skip  
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - printenv
+      - echo Build completed on `date`
+      - echo $(docker images)
+      - echo Pushing docker image
+      - docker push $IMAGE_URI
+      - echo push completed
+      - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $IMAGE_URI > imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
+
+cache:
+  paths:
+    - '/root/.m2/**/*'
