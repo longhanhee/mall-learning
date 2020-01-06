@@ -16,8 +16,7 @@ phases:
       - REPOSITORY_URI=${repository_url}
       - CONTAINER_NAME=${container_name}
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)
-      - IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG
-      - mvn install
+      - IMAGE_URI=$REPOSITORY_URI:$IMAGE_TAG    
   build:
     commands:
       - echo Build started on `date`
