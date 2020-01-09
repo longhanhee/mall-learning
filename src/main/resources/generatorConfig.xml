@@ -4,7 +4,9 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <properties resource="generator.properties"/>
+    <classPathEntry
+            location="F:\Java-Backend-ElasticSearch\mysql-connector-java-8.0.17.jar"/>
+<!--    <properties resource="generator.properties"/>-->
     <context id="MySqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
@@ -21,10 +23,10 @@
             <property name="addRemarkComments" value="true"/>
         </commentGenerator>
         <!--配置数据库连接-->
-        <jdbcConnection driverClass="${jdbc.driverClass}"
-                        connectionURL="${jdbc.connectionURL}"
-                        userId="${jdbc.userId}"
-                        password="${jdbc.password}">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/mall?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai"
+                        userId="root"
+                        password="Qweasd123">
             <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>

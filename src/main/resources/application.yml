@@ -24,7 +24,7 @@ spring:
       repositories:
         enabled: true
       cluster-nodes: ${ELS_HOSTNAME:localhost}:9300 # es địa chỉ kết nối và số cổng
-      cluster-name: ${ELS_CLUSTERNAME:"elasticsearch"}
+      cluster-name: ${ELS_CLUSTERNAME:elasticsearch}
     mongodb:
       host:  ${MONGODB_HOSTNAME:localhost} # địa chỉ kết nối localhost # mongodb
       port: 27017  # số cổng kết nối mongodb

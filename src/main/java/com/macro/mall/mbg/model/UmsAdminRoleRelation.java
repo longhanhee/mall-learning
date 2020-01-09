@@ -1,6 +1,5 @@
 package com.macro.mall.mbg.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
