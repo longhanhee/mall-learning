@@ -45,7 +45,7 @@ public class CommentGenerator extends DefaultCommentGenerator {
             //给model的字段添加swagger注解
             field.addJavaDocLine("@ApiModelProperty(value = \""+remarks+"\")");
             //nếu ko muốn đổi tên field thành _ thì xóa ở đấy
-            field.addJavaDocLine("@JsonProperty(\""+introspectedColumn.getActualColumnName()+"\")");
+//            field.addJavaDocLine("@JsonProperty(\""+introspectedColumn.getActualColumnName()+"\")");
         }
     }
 

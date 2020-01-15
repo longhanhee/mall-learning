@@ -1,18 +1,13 @@
 package com.macro.mall.mbg.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 public class UmsAdminPermissionRelation implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "admin id")
-    @JsonProperty("admin_id")
     private Long adminId;
 
-    @ApiModelProperty(value = "permission id")
-    @JsonProperty("permission_id")
     private Long permissionId;
 
     private Integer type;

@@ -1,6 +1,5 @@
 package com.macro.mall.mbg.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,40 +7,31 @@ import java.util.Date;
 public class UmsPermission implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "Id đặc quyền cha mẹ")
-    @JsonProperty("pid")
+    @ApiModelProperty(value = "父级权限id")
     private Long pid;
 
-    @ApiModelProperty(value = "Tên")
-    @JsonProperty("name")
+    @ApiModelProperty(value = "名称")
     private String name;
 
-    @ApiModelProperty(value = "Privilege value")
-    @JsonProperty("value")
+    @ApiModelProperty(value = "权限值")
     private String value;
 
-    @ApiModelProperty(value = "Biểu tượng")
-    @JsonProperty("icon")
+    @ApiModelProperty(value = "图标")
     private String icon;
 
-    @ApiModelProperty(value = "Permission type: 0->directory; 1->menu; 2-> button (interface binding permission)")
-    @JsonProperty("type")
+    @ApiModelProperty(value = "权限类型：0->目录；1->菜单；2->按钮（接口绑定权限）")
     private Integer type;
 
-    @ApiModelProperty(value = "Đường dẫn tài nguyên phía trước")
-    @JsonProperty("uri")
+    @ApiModelProperty(value = "前端资源路径")
     private String uri;
 
-    @ApiModelProperty(value = "Trạng thái được bật; 0-> tắt; 1-> được bật")
-    @JsonProperty("status")
+    @ApiModelProperty(value = "启用状态；0->禁用；1->启用")
     private Integer status;
 
-    @ApiModelProperty(value = "Thời gian sáng tạo")
-    @JsonProperty("create_time")
+    @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "Sắp xếp")
-    @JsonProperty("sort")
+    @ApiModelProperty(value = "排序")
     private Integer sort;
 
     private static final long serialVersionUID = 1L;

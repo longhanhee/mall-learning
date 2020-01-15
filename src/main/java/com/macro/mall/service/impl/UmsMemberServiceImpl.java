@@ -1,8 +1,6 @@
 package com.macro.mall.service.impl;
 
 
-import cn.hutool.core.util.ReflectUtil;
-import com.alibaba.druid.util.StringUtils;
 import com.macro.mall.common.api.CommonResult;
 import com.macro.mall.service.RedisService;
 import com.macro.mall.service.UmsMemberService;
@@ -12,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Random;
 

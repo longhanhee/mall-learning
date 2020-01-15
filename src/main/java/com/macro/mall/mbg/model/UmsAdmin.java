@@ -1,6 +1,5 @@
 package com.macro.mall.mbg.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,32 +11,25 @@ public class UmsAdmin implements Serializable {
 
     private String password;
 
-    @ApiModelProperty(value = "Hình đại diện")
-    @JsonProperty("icon")
+    @ApiModelProperty(value = "头像")
     private String icon;
 
-    @ApiModelProperty(value = "Hộp thư")
-    @JsonProperty("email")
+    @ApiModelProperty(value = "邮箱")
     private String email;
 
-    @ApiModelProperty(value = "Biệt danh")
-    @JsonProperty("nick_name")
+    @ApiModelProperty(value = "昵称")
     private String nickName;
 
-    @ApiModelProperty(value = "Nhận xét")
-    @JsonProperty("note")
+    @ApiModelProperty(value = "备注信息")
     private String note;
 
-    @ApiModelProperty(value = "Thời gian sáng tạo")
-    @JsonProperty("create_time")
+    @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "Lần đăng nhập cuối cùng")
-    @JsonProperty("login_time")
+    @ApiModelProperty(value = "最后登录时间")
     private Date loginTime;
 
-    @ApiModelProperty(value = "Trạng thái kích hoạt tài khoản: 0-> Vô hiệu hóa; 1-> Kích hoạt")
-    @JsonProperty("status")
+    @ApiModelProperty(value = "帐号启用状态：0->禁用；1->启用")
     private Integer status;
 
     private static final long serialVersionUID = 1L;

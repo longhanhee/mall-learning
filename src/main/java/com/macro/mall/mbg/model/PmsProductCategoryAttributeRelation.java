@@ -3,12 +3,12 @@ package com.macro.mall.mbg.model;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
-public class UmsAdminRoleRelation implements Serializable {
+public class PmsProductCategoryAttributeRelation implements Serializable {
     private Long id;
 
-    private Long adminId;
+    private Long productCategoryId;
 
-    private Long roleId;
+    private Long productAttributeId;
 
     private static final long serialVersionUID = 1L;
 
@@ -20,20 +20,20 @@ public class UmsAdminRoleRelation implements Serializable {
         this.id = id;
     }
 
-    public Long getAdminId() {
-        return adminId;
+    public Long getProductCategoryId() {
+        return productCategoryId;
     }
 
-    public void setAdminId(Long adminId) {
-        this.adminId = adminId;
+    public void setProductCategoryId(Long productCategoryId) {
+        this.productCategoryId = productCategoryId;
     }
 
-    public Long getRoleId() {
-        return roleId;
+    public Long getProductAttributeId() {
+        return productAttributeId;
     }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setProductAttributeId(Long productAttributeId) {
+        this.productAttributeId = productAttributeId;
     }
 
     @Override
@@ -43,8 +43,8 @@ public class UmsAdminRoleRelation implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", adminId=").append(adminId);
-        sb.append(", roleId=").append(roleId);
+        sb.append(", productCategoryId=").append(productCategoryId);
+        sb.append(", productAttributeId=").append(productAttributeId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

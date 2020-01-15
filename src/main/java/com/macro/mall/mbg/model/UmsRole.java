@@ -1,6 +1,5 @@
 package com.macro.mall.mbg.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,24 +7,19 @@ import java.util.Date;
 public class UmsRole implements Serializable {
     private Long id;
 
-    @ApiModelProperty(value = "Tên")
-    @JsonProperty("name")
+    @ApiModelProperty(value = "名称")
     private String name;
 
-    @ApiModelProperty(value = "Mô tả")
-    @JsonProperty("description")
+    @ApiModelProperty(value = "描述")
     private String description;
 
-    @ApiModelProperty(value = "Number of background users")
-    @JsonProperty("admin_count")
+    @ApiModelProperty(value = "后台用户数量")
     private Integer adminCount;
 
-    @ApiModelProperty(value = "Thời gian sáng tạo")
-    @JsonProperty("create_time")
+    @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "Trạng thái đã bật: 0-> tắt; 1-> đã bật")
-    @JsonProperty("status")
+    @ApiModelProperty(value = "启用状态：0->禁用；1->启用")
     private Integer status;
 
     private Integer sort;
