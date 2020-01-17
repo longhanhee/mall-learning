@@ -81,6 +81,17 @@
         <table tableName="pms_member_price">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+        <table tableName="pms_product_vertify_record">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="pms_product_attribute_category">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="pms_product_attribute">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>

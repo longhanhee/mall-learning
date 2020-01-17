@@ -1,6 +1,9 @@
 package com.macro.mall.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.macro.mall.dao.PmsMemberPriceDao;
+import com.macro.mall.dao.PmsProductDao;
+import com.macro.mall.dao.PmsProductVertifyRecordDao;
 import com.macro.mall.dto.PmsProductParam;
 import com.macro.mall.dto.PmsProductQueryParam;
 import com.macro.mall.dto.PmsProductResult;
@@ -9,6 +12,7 @@ import com.macro.mall.mbg.mapper.PmsProductMapper;
 import com.macro.mall.mbg.model.PmsMemberPriceExample;
 import com.macro.mall.mbg.model.PmsProduct;
 import com.macro.mall.mbg.model.PmsProductExample;
+import com.macro.mall.mbg.model.PmsProductVertifyRecord;
 import com.macro.mall.service.PmsProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +22,8 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,9 +33,13 @@ public class PmsProductServiceImpl implements PmsProductService {
     @Autowired
     private PmsProductMapper productMapper;
     @Autowired
+    private PmsProductDao productDao;
+    @Autowired
     private PmsMemberPriceDao memberPriceDao;
     @Autowired
     private PmsMemberPriceMapper memberPriceMapper;
+    @Autowired
+    private PmsProductVertifyRecordDao productVertifyRecordDao;
 
     @Override
     public int create(PmsProductParam productParam) {
@@ -50,7 +60,7 @@ public class PmsProductServiceImpl implements PmsProductService {
 
     @Override
     public PmsProductResult getUpdateInfo(Long id) {
-        return null;
+        return productDao.getUpdateInfo(id);
     }
 
     @Override
@@ -72,12 +82,51 @@ public class PmsProductServiceImpl implements PmsProductService {
 
     @Override
     public List<PmsProduct> list(PmsProductQueryParam productQueryParam, Integer pageSize, Integer pageNum) {
-        return null;
+        PageHelper.startPage(pageNum, pageSize);
+        PmsProductExample productExample = new PmsProductExample();
+        PmsProductExample.Criteria criteria = productExample.createCriteria();
+        criteria.andDeleteStatusEqualTo(0);
+        if (productQueryParam.getPublishStatus() != null) {
+            criteria.andPublishStatusEqualTo(productQueryParam.getPublishStatus());
+        }
+        if (productQueryParam.getVerifyStatus() != null) {
+            criteria.andVerifyStatusEqualTo(productQueryParam.getVerifyStatus());
+        }
+        if (!StringUtils.isEmpty(productQueryParam.getKeyword())) {
+            criteria.andNameLike("%" + productQueryParam.getKeyword() + "%");
+        }
+        if (!StringUtils.isEmpty(productQueryParam.getProductSn())) {
+            criteria.andProductSnEqualTo(productQueryParam.getProductSn());
+        }
+        if (productQueryParam.getBrandId() != null) {
+            criteria.andBrandIdEqualTo(productQueryParam.getBrandId());
+        }
+        if (productQueryParam.getProductCategoryId() != null) {
+            criteria.andProductCategoryIdEqualTo(productQueryParam.getProductCategoryId());
+        }
+        return productMapper.selectByExample(productExample);
     }
 
     @Override
     public int updateVerifyStatus(List<Long> ids, Integer verifyStatus, String detail) {
-        return 0;
+        PmsProduct product = new PmsProduct();
+        product.setVerifyStatus(verifyStatus);
+        PmsProductExample example = new PmsProductExample();
+        example.createCriteria().andIdIn(ids);
+        List<PmsProductVertifyRecord> list = new ArrayList<>();
+        int count = productMapper.updateByExampleSelective(product, example);
+        //修改完审核状态后插入审核记录
+        for (Long id : ids) {
+            PmsProductVertifyRecord record = new PmsProductVertifyRecord();
+            record.setProductId(id);
+            record.setCreateTime(new Date());
+            record.setDetail(detail);
+            record.setStatus(verifyStatus);
+            record.setVertifyMan("test");
+            list.add(record);
+        }
+        productVertifyRecordDao.insertList(list);
+        return count;
     }
 
     @Override
