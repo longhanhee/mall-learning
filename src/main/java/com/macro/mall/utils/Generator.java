@@ -1,4 +1,4 @@
-package com.macro.mall.mbg;
+package com.macro.mall.utils;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -18,7 +18,7 @@ public class Generator {
     public static void main(String[] args) throws Exception {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
-        File configFile = new File("D:\\Backend-Learning\\mall-learning\\src\\main\\resources\\generatorConfig.xml");
+        File configFile = new File("D:\\Java-Backend-Code\\mall-learning\\src\\main\\resources\\generatorConfig.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(configFile);
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);

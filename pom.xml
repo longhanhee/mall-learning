@@ -84,6 +84,12 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.12</version>
         </dependency>
+
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>1.2.3</version>
+        </dependency>
         <!--集成druid连接池-->
 <!--        <dependency>-->
 <!--            <groupId>com.alibaba</groupId>-->

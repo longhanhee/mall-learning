@@ -17,7 +17,11 @@
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <!--Ghi đè tệp gốc khi tạo mapper.xml-->
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
-        <commentGenerator type="com.macro.mall.mbg.CommentGenerator">
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.macro.mall.utils.TkMapper"/>
+        </plugin>
+        <commentGenerator type="com.macro.mall.utils.CommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
@@ -27,7 +31,7 @@
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/mall?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai"
                         userId="root"
-                        password="123Qweasd">
+                        password="Qweasd123">
             <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>

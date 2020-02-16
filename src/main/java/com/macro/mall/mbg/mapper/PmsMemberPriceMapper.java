@@ -2,29 +2,18 @@ package com.macro.mall.mbg.mapper;
 
 import com.macro.mall.mbg.model.PmsMemberPrice;
 import com.macro.mall.mbg.model.PmsMemberPriceExample;
+import com.macro.mall.utils.TkMapper;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface PmsMemberPriceMapper {
+public interface PmsMemberPriceMapper extends TkMapper<PmsMemberPrice> {
     long countByExample(PmsMemberPriceExample example);
 
     int deleteByExample(PmsMemberPriceExample example);
 
-    int deleteByPrimaryKey(Long id);
-
-    int insert(PmsMemberPrice record);
-
-    int insertSelective(PmsMemberPrice record);
-
     List<PmsMemberPrice> selectByExample(PmsMemberPriceExample example);
-
-    PmsMemberPrice selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") PmsMemberPrice record, @Param("example") PmsMemberPriceExample example);
 
     int updateByExample(@Param("record") PmsMemberPrice record, @Param("example") PmsMemberPriceExample example);
-
-    int updateByPrimaryKeySelective(PmsMemberPrice record);
-
-    int updateByPrimaryKey(PmsMemberPrice record);
 }
